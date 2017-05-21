@@ -11,7 +11,11 @@ import UIKit
 
 class TableView : UIViewController, UITableViewDataSource, UITableViewDelegate{
     
+    //outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableViewH: UITableView!
+    
+    //selected meme variable
     var selectMeme: Meme!
 
     //get saved memes and store it in a variable
@@ -19,24 +23,55 @@ class TableView : UIViewController, UITableViewDataSource, UITableViewDelegate{
         return ContentProvider.provider.getMemes
     }
     
+    //load data when app starts
     private func loadData(){
         if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: CreateMeme.filePath) as? [Meme]{
             ContentProvider.provider.getMemes = ourData;
         }
     }
     
+    //when view loads for the first time
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
         tableView.delegate = self
         tableView.dataSource = self
+        tableViewH.delegate = self
+        tableViewH.dataSource = self
     }
     
+    //when screen is rotated
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        if UIDevice.current.orientation.isLandscape {
+            viewDidAppear(true)
+        } else {
+            viewDidAppear(true)
+        }
+    }
     
+    //when view appears
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        tableView.contentInset = UIEdgeInsets.zero
-        tableView.reloadData()
+        
+        // Get device orientation
+        let orientation: UIDeviceOrientation = UIDevice.current.orientation
+        
+        // Layout screen
+        if orientation.isPortrait {
+            UIView.animate(withDuration: 0.25) { () -> Void in
+                self.tableViewH.isHidden = true;
+                self.tableView.isHidden = false;
+                self.tableView.contentInset = UIEdgeInsets.zero
+                self.tableView.reloadData()
+            }
+        } else if orientation.isLandscape {
+            UIView.animate(withDuration: 0.25) { () -> Void in
+                self.tableViewH.isHidden = false;
+                self.tableView.isHidden = true;
+                self.tableViewH.contentInset = UIEdgeInsets.zero
+                self.tableViewH.reloadData()
+            }
+        }
     }
     
     //define number of cells
@@ -48,7 +83,7 @@ class TableView : UIViewController, UITableViewDataSource, UITableViewDelegate{
     //fill in cells
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let meme = memes[indexPath.row]
-        var colorArray = [UIColor.black, UIColor.green, UIColor.red, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.brown, UIColor.darkGray, UIColor.gray, UIColor.cyan, UIColor.magenta, UIColor.clear]
+        var colorArray = [UIColor.black, UIColor.green, UIColor.red, UIColor.purple, UIColor.orange, UIColor.blue, UIColor.brown, UIColor.darkGray, UIColor.gray, UIColor.cyan, UIColor.magenta]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell{
             cell.setUpCell(meme: meme)

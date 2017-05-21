@@ -10,10 +10,13 @@ import Foundation
 
 class ContentProvider{
     
+    //content provider
     static let provider = ContentProvider()
     
+    //meme array
     private var memes = [Meme]()
     
+    //get and set memes
     var getMemes:[Meme]{
         get {
             return memes

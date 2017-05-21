@@ -10,30 +10,34 @@ import UIKit
 
 class OpenImageViewController: UIViewController {
     
+    //outlet
     @IBOutlet weak var image: UIImageView!
     
     var meme: Meme!
+    @IBOutlet weak var bottomText: UITextField!
+    @IBOutlet weak var topText: UITextField!
+    //@IBOutlet weak var imageH: UIImageView!
 
+    //when view appears for the first time
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        image.image = meme.memeImage
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        if let navController = self.navigationController {
-            navController.popToRootViewController(animated: true)
-        }
-    }
 
+    //when view apperas
+    override func viewWillAppear(_ animated: Bool) {
+        
+        image.image = meme.image
+        bottomText.text = meme.bottomText
+        topText.text = meme.topText
+    }
+    
+    
     //edit meme
     func edit(){
-        performSegue(withIdentifier: "edit", sender: self)
+        performSegue(withIdentifier: "edit", sender: nil)
     }
     
     //perform segue

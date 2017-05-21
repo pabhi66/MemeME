@@ -6,9 +6,15 @@
 //  Copyright © 2017 abhi. All rights reserved.
 //
 
+/**
+    Collection view cell class
+ **/
+
 import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
+    
+    //outlets
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var label1: UILabel!
     @IBOutlet weak var label2: UILabel!
@@ -23,6 +29,7 @@ class CollectionViewCell: UICollectionViewCell {
         image.image = meme.image
         label1.text = meme.topText
         label2.text = meme.bottomText
+        
     }
     
 }

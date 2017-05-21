@@ -23,29 +23,26 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     //bottom text outlet
     @IBOutlet weak var bottomText: UITextField!
     
-    //Top toolbar outlet
-    @IBOutlet weak var topToolbar: UIToolbar!
-    
     //bottom toolbar outlet
     @IBOutlet weak var bottomToolbar: UIToolbar!
-    
-    //meme me title outlet
-    @IBOutlet weak var memeTitle: UILabel!
     
     //share/save button outlet
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
-    //instructions outlet
-    @IBOutlet weak var instruction: UILabel!
     var memedImage: UIImage!
     
     //saveButton outlet
     @IBOutlet weak var saveButtonOutlet: UIBarButtonItem!
     
-    //edit buttons
+    //create image icon and button
+    @IBOutlet weak var createImage: UIImageView!
+    @IBOutlet weak var createButton: UIButton!
+    
+    
+    //edit variables
     var editImage : UIImage!
-    var editTopText: String?
-    var editBottomText: String?
+    var editTopText: String!
+    var editBottomText: String!
     
     //save to file manager
     static var filePath: String{
@@ -67,14 +64,14 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         
         //change background color of the activity
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor.yellow
         
         //check if camara is available in the device if not disable it
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
         //connect text field to text field delegate
         topText.delegate = self
-        bottomText .delegate = self
+        bottomText.delegate = self
         
         //hide text
         topText.isHidden = true;
@@ -99,43 +96,11 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         //disable share button (enable it after an image is selected)
         shareButton.isEnabled = false;
         
-        if editImage != nil{
-            imageView.image = editImage
-            shareButton.isEnabled = true;
-            topText.isHidden = false;
-            bottomText.isHidden = false;
-            instruction.isHidden = true;
-            saveButtonOutlet.isEnabled = true;
-            
-            if let top = editTopText, let bottom = editBottomText{
-                topText.text = top
-                bottomText.text = bottom
-            }
-        }
-        
-        
-        
-        
     }
     
     //when the view appers
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //check if editing meme
-        if editImage != nil{
-            imageView.image = editImage
-            shareButton.isEnabled = true;
-            topText.isHidden = false;
-            bottomText.isHidden = false;
-            instruction.isHidden = true;
-            saveButtonOutlet.isEnabled = true;
-            
-            if let top = editTopText, let bottom = editBottomText{
-                topText.text = top
-                bottomText.text = bottom
-            }
-        }
         
         //check if camera is availabe in a device
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
@@ -143,6 +108,24 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         //suscribe to keyboard and notifications
         subscribeToKeyboardNotifications()
         
+        //check if editing meme
+
+        if editImage != nil{
+            imageView.image = editImage
+            shareButton.isEnabled = true;
+            topText.isHidden = false;
+            bottomText.isHidden = false;
+            saveButtonOutlet.isEnabled = true;
+            createImage.isHidden = true;
+            createButton.isHidden = true;
+            self.view.backgroundColor = UIColor.black
+            bottomToolbar.barTintColor = UIColor.black
+            
+            if let top = editTopText, let bottom = editBottomText{
+                topText.text = top
+                bottomText.text = bottom
+            }
+        }
     }
     
     //when the view disappers
@@ -216,7 +199,20 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
-
+        createImage.isHidden = true;
+        createButton.isHidden = true;
+        self.view.backgroundColor = UIColor.black
+        bottomToolbar.barTintColor = UIColor.black
+    }
+    @IBAction func createMeme(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        present(imagePicker, animated: true, completion: nil)
+        createImage.isHidden = true;
+        createButton.isHidden = true;
+        self.view.backgroundColor = UIColor.black
+        bottomToolbar.barTintColor = UIColor.black
     }
     
     //choose an image and assign it to imageview
@@ -232,7 +228,6 @@ UINavigationControllerDelegate, UITextFieldDelegate {
         shareButton.isEnabled = true;
         topText.isHidden = false;
         bottomText.isHidden = false;
-        instruction.isHidden = true;
         saveButtonOutlet.isEnabled = true;
         
         //dismiss the image chooser
@@ -302,8 +297,6 @@ UINavigationControllerDelegate, UITextFieldDelegate {
     
     //show hid toolbar
     func HideToolbar(_ state: Bool) {
-        memeTitle.isHidden = state
-        topToolbar.isHidden = state
         bottomToolbar.isHidden = state
     }
     

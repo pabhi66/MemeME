@@ -8,12 +8,17 @@
 
 import UIKit
 
+/**
+ Table view cell class
+ **/
+
 class TableViewCell: UITableViewCell {
 
+    //outlets
     @IBOutlet weak var memeImage: UIImageView!
     @IBOutlet weak var memeLabel2: UILabel!
     @IBOutlet weak var memeLabel1: UILabel!
-    
+    @IBOutlet weak var imageBack: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

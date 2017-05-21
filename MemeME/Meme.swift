@@ -10,6 +10,7 @@ import UIKit
 
 class Meme: NSObject, NSCoding {
     
+    //meme properties/keys
     struct Keys {
         static let Image = "Image"
         static let MemedImage = "MemedImage"
@@ -17,20 +18,21 @@ class Meme: NSObject, NSCoding {
         static let BottomText = "Bottom"
     }
     
+    //meme variables
     var image: UIImage!
     var memeImage: UIImage!
     var topText: String!
     var bottomText: String!
     
+    //initialize meme object
     init(image: UIImage, memeImage: UIImage, topText: String, bottomText: String) {
         self.image = image
         self.memeImage = memeImage
         self.topText = topText
         self.bottomText = bottomText
     }
-    
-//    override init() {}
-    
+
+    //save meme using NScoder
     required init(coder aDecoder: NSCoder) {
         if let imgObj = aDecoder.decodeObject(forKey: Keys.Image) as? UIImage{
             image = imgObj;
@@ -46,6 +48,7 @@ class Meme: NSObject, NSCoding {
         }
     }
     
+    //encode meme with NSCoder
     func encode(with aCoder: NSCoder) {
         aCoder.encode(image, forKey: Keys.Image)
         aCoder.encode(memeImage, forKey: Keys.MemedImage)

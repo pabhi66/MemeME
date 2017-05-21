@@ -19,6 +19,11 @@
 		38900A5D1E9168F800A71C51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38900A5C1E9168F800A71C51 /* Assets.xcassets */; };
 		38900A601E9168F800A71C51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38900A5E1E9168F800A71C51 /* LaunchScreen.storyboard */; };
 		38900A691E92D74300A71C51 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38900A681E92D74300A71C51 /* Meme.swift */; };
+		38D160E81EC130A2005DE76F /* VBPiledView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D160E71EC130A2005DE76F /* VBPiledView.swift */; };
+		38D160EA1EC131C8005DE76F /* VBPiledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D160E91EC131C8005DE76F /* VBPiledViewController.swift */; };
+		38D160EE1EC138F0005DE76F /* TRMosaicColumns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D160ED1EC138F0005DE76F /* TRMosaicColumns.swift */; };
+		38D160F01EC1393B005DE76F /* TRMosaicCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D160EF1EC1393B005DE76F /* TRMosaicCellType.swift */; };
+		38D160F21EC1397D005DE76F /* TRCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D160F11EC1397D005DE76F /* TRCollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +41,11 @@
 		38900A5F1E9168F800A71C51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		38900A611E9168F800A71C51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38900A681E92D74300A71C51 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		38D160E71EC130A2005DE76F /* VBPiledView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPiledView.swift; sourceTree = "<group>"; };
+		38D160E91EC131C8005DE76F /* VBPiledViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VBPiledViewController.swift; sourceTree = "<group>"; };
+		38D160ED1EC138F0005DE76F /* TRMosaicColumns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRMosaicColumns.swift; sourceTree = "<group>"; };
+		38D160EF1EC1393B005DE76F /* TRMosaicCellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRMosaicCellType.swift; sourceTree = "<group>"; };
+		38D160F11EC1397D005DE76F /* TRCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TRCollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +74,8 @@
 				3827166E1E9ED77800564AE7 /* TableView.swift */,
 				382716721E9EEE8100564AE7 /* OpenImageViewController.swift */,
 				382716761E9EF4D600564AE7 /* CollectionView.swift */,
+				38D160E91EC131C8005DE76F /* VBPiledViewController.swift */,
+				38D160F11EC1397D005DE76F /* TRCollectionViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -71,10 +83,11 @@
 		382716781EA54E3000564AE7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				38900A591E9168F800A71C51 /* Main.storyboard */,
-				38900A5E1E9168F800A71C51 /* LaunchScreen.storyboard */,
 				382716741E9EF3C000564AE7 /* CollectionViewCell.swift */,
 				382716701E9EE0C600564AE7 /* TableViewCell.swift */,
+				38D160E71EC130A2005DE76F /* VBPiledView.swift */,
+				38D160ED1EC138F0005DE76F /* TRMosaicColumns.swift */,
+				38D160EF1EC1393B005DE76F /* TRMosaicCellType.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -98,13 +111,12 @@
 		38900A541E9168F800A71C51 /* MemeME */ = {
 			isa = PBXGroup;
 			children = (
+				38F83CAC1EAEA8D6007E116D /* Assets */,
 				382716781EA54E3000564AE7 /* Views */,
 				3827166D1E9ED60C00564AE7 /* Controllers */,
 				3827166A1E9ED33300564AE7 /* Content Provider */,
 				38900A671E92D73300A71C51 /* Model */,
 				38900A551E9168F800A71C51 /* AppDelegate.swift */,
-				38900A5C1E9168F800A71C51 /* Assets.xcassets */,
-				38900A611E9168F800A71C51 /* Info.plist */,
 			);
 			path = MemeME;
 			sourceTree = "<group>";
@@ -115,6 +127,17 @@
 				38900A681E92D74300A71C51 /* Meme.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		38F83CAC1EAEA8D6007E116D /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				38900A591E9168F800A71C51 /* Main.storyboard */,
+				38900A5E1E9168F800A71C51 /* LaunchScreen.storyboard */,
+				38900A5C1E9168F800A71C51 /* Assets.xcassets */,
+				38900A611E9168F800A71C51 /* Info.plist */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +173,7 @@
 					38900A511E9168F800A71C51 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = SJ423KZGU5;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -192,13 +216,18 @@
 			files = (
 				382716771E9EF4D600564AE7 /* CollectionView.swift in Sources */,
 				3827166F1E9ED77800564AE7 /* TableView.swift in Sources */,
+				38D160F21EC1397D005DE76F /* TRCollectionViewController.swift in Sources */,
 				38900A691E92D74300A71C51 /* Meme.swift in Sources */,
+				38D160EE1EC138F0005DE76F /* TRMosaicColumns.swift in Sources */,
 				382716751E9EF3C000564AE7 /* CollectionViewCell.swift in Sources */,
 				382716711E9EE0C600564AE7 /* TableViewCell.swift in Sources */,
 				38900A581E9168F800A71C51 /* CreateMeme.swift in Sources */,
 				382716731E9EEE8100564AE7 /* OpenImageViewController.swift in Sources */,
 				3827166C1E9ED35200564AE7 /* ContentProvider.swift in Sources */,
+				38D160EA1EC131C8005DE76F /* VBPiledViewController.swift in Sources */,
 				38900A561E9168F800A71C51 /* AppDelegate.swift in Sources */,
+				38D160E81EC130A2005DE76F /* VBPiledView.swift in Sources */,
+				38D160F01EC1393B005DE76F /* TRMosaicCellType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
